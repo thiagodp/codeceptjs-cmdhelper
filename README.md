@@ -79,7 +79,7 @@ Scenario( 'Bar', async ( I ) => {
 } );
 ```
 
-### Example 2
+### Example 3
 
 ```js
 Feature( 'Foo' );
