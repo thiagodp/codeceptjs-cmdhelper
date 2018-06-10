@@ -16,7 +16,10 @@
     "execute",
     "command",
     "console",
-    "terminal"
+    "terminal",
+    "test",
+    "testing",
+    "bdd"
   ],
   "author": "thiagodp",
   "license": "MIT",
