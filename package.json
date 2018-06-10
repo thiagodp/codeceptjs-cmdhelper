@@ -1,0 +1,29 @@
+{
+  "name": "codeceptjs-cmdhelper",
+  "version": "1.0.0",
+  "description": "Let your CodeceptJS tests run commands in the console/terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thiagodp/codeceptjs-cmdhelper.git"
+  },
+  "keywords": [
+    "codeceptjs",
+    "run",
+    "execute",
+    "command",
+    "console",
+    "terminal"
+  ],
+  "author": "thiagodp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thiagodp/codeceptjs-cmdhelper/issues"
+  },
+  "homepage": "https://github.com/thiagodp/codeceptjs-cmdhelper#readme",
+  "dependencies": {},
+  "devDependencies": {}
+}
