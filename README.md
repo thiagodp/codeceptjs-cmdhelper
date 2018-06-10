@@ -29,8 +29,9 @@ In your `codecept.json`, include **CmdHelper** in the property **helpers** :
 
 #### Additional options
 
-- `options` (*object*): parameters that will be given by default to NodeJS' [spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options). Default is `{ shell: true }`.
-- `showOutput` (*boolean*): whether it will send the execution output to the console. Default is `true`.
+- `options: object`: Accepts the same parameters as [NodeJS' spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options), plus `showOutput: boolean`. Optional. Default is `{ shell: true, showOutput: true }`.
+
+##### Example
 
 ```js
   ...
@@ -39,9 +40,8 @@ In your `codecept.json`, include **CmdHelper** in the property **helpers** :
     "CmdHelper": {
       "require": "./node_modules/codeceptjs-cmdhelper",
       "options": {
-          "shell": true
+          "showOutput": false
       },
-      "showOutput": false
     }
   },
   ...
@@ -79,9 +79,20 @@ Scenario( 'Bar', async ( I ) => {
 } );
 ```
 
+### Example 2
+
+```js
+Feature( 'Foo' );
+
+Scenario( 'Bar', async ( I ) => {
+    // Does not show output
+    await I.runCommand( 'mkdir foo', { showOutput: false } );
+} );
+```
+
 ### Note
 
-Make sure to handle errors properly.
+Make sure to handle errors properly, with `try`..`catch`.
 
 ```js
     try {
@@ -100,7 +111,7 @@ Make sure to handle errors properly.
  * Executes the given command.
  *
  * @param {string} command Command to execute.
- * @param {object} options Same options as in NodeJS' spawn(). Optional. Default is `{ shell: true }`.
+ * @param {object} options Same options as in NodeJS' spawn(), plus `showOutput: boolean`. Optional. Default is `{ shell: true, showOutput: true }`.
  *
  * @returns Promise with the returning execution status code (0 means success)
  */
