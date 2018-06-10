@@ -119,6 +119,11 @@ runCommand( command, options )
 ```
 
 
+## See also
+
+[codeceptjs-dbhelper](https://github.com/thiagodp/codeceptjs-dbhelper) - Connect to databases and run SQL commands
+
+
 ## License
 
 MIT © [Thiago Delgado Pinto](https://github.com/thiagodp)
