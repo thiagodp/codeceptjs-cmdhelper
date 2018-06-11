@@ -1,6 +1,6 @@
 {
   "name": "codeceptjs-cmdhelper",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "description": "Let your CodeceptJS tests run commands in the console/terminal",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,5 @@
     "split-cmd": "^1.0.0",
     "codeceptjs": "^1.2.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
