@@ -2,7 +2,11 @@ const spawn = require( 'child_process' ).spawn;
 const platform = require( 'os' ).platform;
 const splitToObject = require( 'split-cmd' ).splitToObject;
 
-if ( ! Helper ) { // useful when testing
+function inJest() {
+    return process.argv.find( s => s.endsWith( 'jest.js' ) );
+}
+
+if ( inJest() && ! Helper ) {
     var Helper = require( 'codeceptjs' ).helper;
 }
 
