@@ -27,6 +27,10 @@
     "url": "https://github.com/thiagodp/codeceptjs-cmdhelper/issues"
   },
   "homepage": "https://github.com/thiagodp/codeceptjs-cmdhelper#readme",
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "split-cmd": "^1.0.0"
+  },
+  "devDependencies": {
+    "codeceptjs": "^1.2.1"
+  }
 }

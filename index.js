@@ -1,5 +1,10 @@
-let spawn = require( 'child_process' ).spawn;
-let platform = require( 'os' ).platform;
+const spawn = require( 'child_process' ).spawn;
+const platform = require( 'os' ).platform;
+const splitToObject = require( 'split-cmd' ).splitToObject;
+
+if ( ! Helper ) { // useful when testing
+    var Helper = require( 'codeceptjs' ).helper;
+}
 
 /**
  * Command helper
@@ -55,31 +60,23 @@ class CmdHelper extends Helper {
             options: options || this.options[ optionsProperty ] || { shell: true },
 
             showOutput: ! options
-                ? ( this.options[ showOutputProperty ] || true )
-                : ( options[ showOutputProperty ] || true )
+                ? ( this.options[ showOutputProperty ] )
+                : ( options[ showOutputProperty ] )
         };
 
         // Removes 'showOutput' from options, because it is not accepted by spawn()
         cfg.options[ showOutputProperty ] = undefined;
 
-        // Fix problem with span() on Windows OSes
+        // Fix problem with spawn() on Windows OSes
         if ( 'win32' === platform() ) {
             cfg.options[ 'shell' ] = true;
         }
 
-        // Splits the command into pieces to pass to the process;
-        //  mapping function simply removes quotes from each piece
-        let cmds = command.match( /[^"\s]+|"(?:\\"|[^"])+"/g )
-            .map( expr => {
-                return expr.charAt( 0 ) === '"' && expr.charAt( expr.length - 1 ) === '"' ? expr.slice( 1, -1 ) : expr;
-            } );
-
-        const runCMD = cmds[ 0 ];
-        cmds.shift();
+        const cmdObj = splitToObject( command );
 
         return new Promise( ( resolve, reject ) => {
 
-            const child = spawn( runCMD, cmds, cfg.options );
+            const child = spawn( cmdObj.command, cmdObj.args, cfg.options );
 
             child.stdout.on( 'data', ( chunk ) => {
                 if ( cfg.showOutput && ( chunk !== undefined && chunk !== null ) ) {

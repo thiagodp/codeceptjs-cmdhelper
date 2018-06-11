@@ -4,7 +4,7 @@
 
 This is a [Helper](https://codecept.io/helpers/) for [CodeceptJS](https://codecept.io/) that allows you to run commands in the console/terminal. **It is especially useful for preparing the execution environment before/after executing test cases.**
 
-No external dependencies. It uses NodeJS' [spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options).
+It uses NodeJS' [spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options).
 
 ## Install
 
