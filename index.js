@@ -24,10 +24,13 @@ class CmdHelper extends Helper {
 
         const defaultOptions = {
             options: {
+                // spawn() options
                 // stdio: 'inherit', // <<< not working on windows!
-                shell: true
-            },
-            showOutput: true
+                shell: true,
+
+                // additional options
+                showOutput: true
+            }
         };
 
         // Attributes
@@ -52,40 +55,30 @@ class CmdHelper extends Helper {
             throw new Error( 'Options must be an object, undefined or null.' );
         }
 
-        const optionsProperty = 'options';
-        const showOutputProperty = 'showOutput';
-
-        const cfg = {
-
-            options: options || this.options[ optionsProperty ] || { shell: true },
-
-            showOutput: ! options
-                ? ( this.options[ showOutputProperty ] )
-                : ( options[ showOutputProperty ] )
-        };
-
+        let opt = Object.assign( this.options.options || {}, options );
+        const showOutput = opt.showOutput;
         // Removes 'showOutput' from options, because it is not accepted by spawn()
-        cfg.options[ showOutputProperty ] = undefined;
+        opt.showOutput = undefined;
 
         // Fix problem with spawn() on Windows OSes
         if ( 'win32' === platform() ) {
-            cfg.options[ 'shell' ] = true;
+            opt[ 'shell' ] = true;
         }
 
         const cmdObj = splitToObject( command );
 
         return new Promise( ( resolve, reject ) => {
 
-            const child = spawn( cmdObj.command, cmdObj.args, cfg.options );
+            const child = spawn( cmdObj.command, cmdObj.args, opt );
 
             child.stdout.on( 'data', ( chunk ) => {
-                if ( cfg.showOutput && ( chunk !== undefined && chunk !== null ) ) {
+                if ( showOutput && ( chunk !== undefined && chunk !== null ) ) {
                     console.log( chunk.toString() );
                 }
             } );
 
             child.stderr.on( 'data', ( chunk ) => {
-                if ( cfg.showOutput && ( chunk !== undefined && chunk !== null ) ) {
+                if ( showOutput && ( chunk !== undefined && chunk !== null ) ) {
                     console.warn( chunk.toString() );
                 }
             } );
