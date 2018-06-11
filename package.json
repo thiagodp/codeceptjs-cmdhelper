@@ -28,9 +28,9 @@
   },
   "homepage": "https://github.com/thiagodp/codeceptjs-cmdhelper#readme",
   "dependencies": {
-    "split-cmd": "^1.0.0"
+    "split-cmd": "^1.0.0",
+    "codeceptjs": "^1.2.1"
   },
   "devDependencies": {
-    "codeceptjs": "^1.2.1"
   }
 }
