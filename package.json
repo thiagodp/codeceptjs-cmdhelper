@@ -4,7 +4,8 @@
   "description": "Let your CodeceptJS tests run commands in the console/terminal",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "preversion": "npm run test"
   },
   "repository": {
     "type": "git",
@@ -12,7 +13,9 @@
   },
   "keywords": [
     "codeceptjs",
+    "helper",
     "run",
+    "cmd",
     "execute",
     "command",
     "console",
@@ -28,8 +31,10 @@
   },
   "homepage": "https://github.com/thiagodp/codeceptjs-cmdhelper#readme",
   "dependencies": {
-    "split-cmd": "^1.0.0",
-    "codeceptjs": "^1.2.1"
+    "split-cmd": "^1.0.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "codeceptjs": "^2.6.1",
+    "jest": "^25.4.0"
+  }
 }

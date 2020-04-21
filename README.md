@@ -8,10 +8,8 @@ It uses NodeJS' [spawn](https://nodejs.org/api/child_process.html#child_process_
 
 ## Install
 
-📌 Currently, this helper is compatible with CodeceptJS `1.2.1` and should work with any version `1.x`. However, it was not tested yet with versions `2.x`.
-
 ```bash
-npm install --save-dev codeceptjs-cmdhelper
+npm install --save codeceptjs-cmdhelper
 ```
 
 ## How to configure it
