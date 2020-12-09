@@ -1,6 +1,6 @@
 {
   "name": "codeceptjs-cmdhelper",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Let your CodeceptJS tests run commands in the console/terminal",
   "main": "index.js",
   "scripts": {
