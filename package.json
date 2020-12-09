@@ -34,7 +34,7 @@
     "split-cmd": "^1.0.1"
   },
   "devDependencies": {
-    "codeceptjs": "^2.6.1",
-    "jest": "^25.4.0"
+    "codeceptjs": "^2.6.11",
+    "jest": "^25.5.4"
   }
 }
