@@ -1,5 +1,8 @@
 # codeceptjs-cmdhelper
 
+[![npm version](https://badge.fury.io/js/codeceptjs-cmdhelper.svg)](https://badge.fury.io/js/codeceptjs-cmdhelper)
+[![Downloads](https://img.shields.io/npm/dt/codeceptjs-cmdhelper.svg)](https://npmjs.org/package/codeceptjs-cmdhelper)
+
 > Let your CodeceptJS tests run commands in the console/terminal
 
 This is a [Helper](https://codecept.io/helpers/) for [CodeceptJS](https://codecept.io/) that allows you to run commands in the console/terminal. **It is especially useful for preparing the execution environment before/after executing test cases.**
