@@ -2,15 +2,16 @@
   "name": "codeceptjs-cmdhelper",
   "version": "2.2.3",
   "description": "Let your CodeceptJS tests run commands in the console/terminal",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "preversion": "npm run test"
-  },
+  "author": "thiagodp",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thiagodp/codeceptjs-cmdhelper.git"
   },
+  "bugs": {
+    "url": "https://github.com/thiagodp/codeceptjs-cmdhelper/issues"
+  },
+  "homepage": "https://github.com/thiagodp/codeceptjs-cmdhelper",
   "keywords": [
     "codeceptjs",
     "helper",
@@ -24,17 +25,21 @@
     "testing",
     "bdd"
   ],
-  "author": "thiagodp",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/thiagodp/codeceptjs-cmdhelper/issues"
+  "main": "index.js",
+  "scripts": {
+    "setup:v2": "cd codeceptjs_check/v2 && npm i && cd ../..",
+    "setup:v3": "cd codeceptjs_check/v3 && npm i && cd ../..",
+    "test": "mocha __tests__",
+    "test:v2": "cd codeceptjs_check/v2 && npx codeceptjs run",
+    "test:v3": "cd codeceptjs_check/v3 && npx codeceptjs run",
+    "test:all": "npm run test && npm run test:v2 && npm run test:v3",
+    "preversion": "npm run test"
   },
-  "homepage": "https://github.com/thiagodp/codeceptjs-cmdhelper#readme",
   "dependencies": {
     "split-cmd": "^1.0.1"
   },
   "devDependencies": {
-    "codeceptjs": "^2.6.11",
-    "jest": "^25.5.4"
+    "codeceptjs": "^3.0.7",
+    "mocha": "^8.4.0"
   }
 }
