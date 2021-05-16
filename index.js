@@ -1,6 +1,10 @@
 const spawn = require( 'child_process' ).spawn;
 const platform = require( 'os' ).platform;
 const splitToObject = require( 'split-cmd' ).splitToObject;
+if ( ! Helper ) {
+    var Helper = require( 'codeceptjs/lib/helper' );
+}
+
 
 /**
  * Command helper

@@ -7,17 +7,17 @@
 
 This is a [Helper](https://codecept.io/helpers/) for [CodeceptJS](https://codecept.io/) that allows you to run commands in the console/terminal. **It is especially useful for preparing the execution environment before/after executing test cases.**
 
-It uses NodeJS' [spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options).
+👉 It works with CodeceptJS 1, 2, and 3.
 
 ## Install
 
 ```bash
-npm install --save codeceptjs-cmdhelper
+npm i -D codeceptjs-cmdhelper
 ```
 
-## How to configure it
+## Configure
 
-In your `codecept.json`, include **CmdHelper** in the property **helpers** :
+In your configuration file (_e.g._, `codecept.conf.js`, `codecept.json`), include **CmdHelper** in the property **helpers** :
 
 ```js
   ...
@@ -30,11 +30,11 @@ In your `codecept.json`, include **CmdHelper** in the property **helpers** :
   ...
 ```
 
-#### Additional options
+### Options
 
-- `options: object`: Accepts the same parameters as [NodeJS' spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options), plus `showOutput: boolean`. Optional. Default is `{ shell: true, showOutput: true }`.
+Optionally, you can set an `options` property with an object that accepts the same parameters as [NodeJS spawn](https://nodejs.org/api/child_process.html#child_process_child_process_spawn_command_args_options)'s, plus `showOutput: boolean`. The default value is `{ shell: true, showOutput: true }`.
 
-##### Example
+Example:
 
 ```js
   ...
@@ -50,19 +50,42 @@ In your `codecept.json`, include **CmdHelper** in the property **helpers** :
   ...
 ```
 
-## How to use it
+## Usage
 
-The object `I` of your tests and events will have access to new methods. [See the API](#api).
+### Syntax differences between CodeceptJS 2 and CodeceptJS 3
+In CodeceptJS 2, your callbacks receive `I` as argument:
+
+```javascript
+Scenario('test something', async ( I ) => {   // CodeceptJS 2 notation
+   /* ... */
+} );
+```
+
+In CodeceptJS 3, your callbacks receive an object with `I` - that is, `{ I }`:
+
+```javascript
+Scenario('test something', async ( { I } ) => {   // CodeceptJS 3 notation
+   /* ... */
+} );
+```
+
+See the [CodeceptJS docs](https://github.com/codeceptjs/CodeceptJS/wiki/Upgrading-to-CodeceptJS-3) for more information on how to upgrade your codebase.
+
+### Examples
+
+> The following examples are written with **CodeceptJS 3**.
+
+Now the object `I` (of your callbacks) has [new methods](#api).
 
 
-### Example 1
+#### Example 1
 
 ```js
-BeforeSuite( async ( I ) => {
+BeforeSuite( async ( { I } ) => {
     await I.runCommand( 'echo "Hello world!" >foo.txt' );
 } );
 
-AfterSuite( async ( I ) => {
+AfterSuite( async ( { I } ) => {
     await I.runCommand( 'rm foo.txt' );
     // await I.runCommand( 'del foo.txt' ); // on Windows
 } );
@@ -72,24 +95,14 @@ AfterSuite( async ( I ) => {
 // ... your scenarios ...
 ```
 
-### Example 2
+#### Example 2
 
 ```js
 Feature( 'Foo' );
 
-Scenario( 'Bar', async ( I ) => {
+Scenario( 'Bar', async ( { I } ) => {
     await I.runCommand( 'mkdir foo' );
-} );
-```
-
-### Example 3
-
-```js
-Feature( 'Foo' );
-
-Scenario( 'Bar', async ( I ) => {
-    // Does not show output
-    await I.runCommand( 'mkdir foo', { showOutput: false } );
+    await I.runCommand( 'mkdir bar', { showOutput: false } );
 } );
 ```
 
