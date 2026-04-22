@@ -65,7 +65,9 @@ class CmdHelper extends Helper {
             opt[ 'shell' ] = true;
         }
 
-        const cmdObj = splitToObject( command );
+        // When shell: true, pass the full command string with no args array to avoid
+        // Node.js 24 DEP0190 (args concatenated without escaping under shell mode).
+        const cmdObj = opt.shell ? { command, args: [] } : splitToObject( command );
 
         return new Promise( ( resolve, reject ) => {
 
