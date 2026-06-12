@@ -3,6 +3,8 @@ const platform = require( 'os' ).platform;
 const splitToObject = require( 'split-cmd' ).splitToObject;
 if ( ! Helper ) {
     var Helper = require( 'codeceptjs/lib/helper' );
+    // ESM interop: codeceptjs 4.x is ESM; require() of it returns the module namespace, extract default
+    if (Helper && typeof Helper !== 'function' && typeof Helper.default === 'function') Helper = Helper.default;
 }
 
 
